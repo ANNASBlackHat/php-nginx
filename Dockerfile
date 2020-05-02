@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM php:7.3-fpm-alpine
 
 #install nginx
 RUN apk update \
@@ -14,6 +14,6 @@ COPY app.conf /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY . /www
-# USER www
+
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+CMD nginx && php-fpm
